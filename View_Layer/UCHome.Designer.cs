@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, "10,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, "2,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, "15,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(4D, "20,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, "12,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(6D, "22,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint7 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(7D, "15,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint8 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(8D, "20,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint9 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(9D, "10,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint10 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "4,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint11 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(11D, "3,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint12 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(12D, "3,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint13 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(12D, "4,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint14 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(14D, "1,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint15 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(15D, "2,0,0,0,0,0,0,0,0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint46 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, "10,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint47 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, "2,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint48 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, "15,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint49 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(4D, "20,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint50 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, "12,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint51 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(6D, "22,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint52 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(7D, "15,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint53 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(8D, "20,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint54 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(9D, "10,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint55 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "4,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint56 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(11D, "3,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint57 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(12D, "3,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint58 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(12D, "4,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint59 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(14D, "1,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint60 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(15D, "2,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
@@ -59,7 +59,11 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lbInfor1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lbInfor2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lbInfor3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lbInfor4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel7.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
@@ -134,69 +138,72 @@
             this.chartMenu.BackColor = System.Drawing.Color.Transparent;
             this.chartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.chartMenu.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chartMenu.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chartMenu.ChartAreas.Add(chartArea4);
             this.chartMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartMenu.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chartMenu.Legends.Add(legend4);
             this.chartMenu.Location = new System.Drawing.Point(0, 0);
             this.chartMenu.Name = "chartMenu";
             this.chartMenu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
             this.chartMenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            series1.ChartArea = "ChartArea1";
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Series2";
-            dataPoint1.IsValueShownAsLabel = true;
-            dataPoint1.Label = "Cơ Khí Chế Tạo Máy";
-            dataPoint1.LabelForeColor = System.Drawing.Color.Black;
-            dataPoint2.Label = "Cơ Khí Động Lực";
-            dataPoint3.Label = "Công Nghệ Khóa Học - Thực Phẩm";
-            dataPoint4.Label = "Công Nghệ Thông Tin";
-            dataPoint5.Label = "Đào Tạo Chất Lượng Cao";
-            dataPoint6.Label = "Điện - ĐIện Tử";
-            dataPoint7.Label = "In - Truyền Thông";
-            dataPoint8.Label = "Khoa Học Ứng Dụng";
-            dataPoint9.Label = "Kinh Tế";
-            dataPoint10.Label = "Chính Trị Và Luật";
-            dataPoint11.Label = "Ngoại Ngữ";
-            dataPoint12.Label = "Xây Dựng";
-            dataPoint13.Label = "Thời Trang Và Du Lịch";
-            dataPoint14.Label = "Viện Sư Phạm Kĩ Thuật";
-            dataPoint15.Label = "Đào Tạo Quốc Tế";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            series1.Points.Add(dataPoint3);
-            series1.Points.Add(dataPoint4);
-            series1.Points.Add(dataPoint5);
-            series1.Points.Add(dataPoint6);
-            series1.Points.Add(dataPoint7);
-            series1.Points.Add(dataPoint8);
-            series1.Points.Add(dataPoint9);
-            series1.Points.Add(dataPoint10);
-            series1.Points.Add(dataPoint11);
-            series1.Points.Add(dataPoint12);
-            series1.Points.Add(dataPoint13);
-            series1.Points.Add(dataPoint14);
-            series1.Points.Add(dataPoint15);
-            series1.YValuesPerPoint = 10;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64;
-            this.chartMenu.Series.Add(series1);
+            series4.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            series4.ChartArea = "ChartArea1";
+            series4.IsXValueIndexed = true;
+            series4.Label = "Ngành";
+            series4.Legend = "Legend1";
+            series4.Name = "Khoa";
+            dataPoint46.IsValueShownAsLabel = true;
+            dataPoint46.Label = "Cơ Khí Chế Tạo Máy";
+            dataPoint46.LabelForeColor = System.Drawing.Color.Black;
+            dataPoint47.Label = "Cơ Khí Động Lực";
+            dataPoint48.Label = "Công Nghệ Khóa Học - Thực Phẩm";
+            dataPoint49.Label = "Công Nghệ Thông Tin";
+            dataPoint50.Label = "Đào Tạo Chất Lượng Cao";
+            dataPoint51.Label = "Điện - ĐIện Tử";
+            dataPoint52.Label = "In - Truyền Thông";
+            dataPoint53.Label = "Khoa Học Ứng Dụng";
+            dataPoint54.Label = "Kinh Tế";
+            dataPoint55.Label = "Chính Trị Và Luật";
+            dataPoint56.Label = "Ngoại Ngữ";
+            dataPoint57.Label = "Xây Dựng";
+            dataPoint58.Label = "Thời Trang Và Du Lịch";
+            dataPoint59.Label = "Viện Sư Phạm Kĩ Thuật";
+            dataPoint60.Label = "Đào Tạo Quốc Tế";
+            series4.Points.Add(dataPoint46);
+            series4.Points.Add(dataPoint47);
+            series4.Points.Add(dataPoint48);
+            series4.Points.Add(dataPoint49);
+            series4.Points.Add(dataPoint50);
+            series4.Points.Add(dataPoint51);
+            series4.Points.Add(dataPoint52);
+            series4.Points.Add(dataPoint53);
+            series4.Points.Add(dataPoint54);
+            series4.Points.Add(dataPoint55);
+            series4.Points.Add(dataPoint56);
+            series4.Points.Add(dataPoint57);
+            series4.Points.Add(dataPoint58);
+            series4.Points.Add(dataPoint59);
+            series4.Points.Add(dataPoint60);
+            series4.YValuesPerPoint = 10;
+            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64;
+            this.chartMenu.Series.Add(series4);
             this.chartMenu.Size = new System.Drawing.Size(1188, 535);
             this.chartMenu.TabIndex = 0;
             this.chartMenu.Text = "CHART";
-            title1.BorderColor = System.Drawing.Color.Transparent;
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Tile";
-            title1.ShadowColor = System.Drawing.Color.Transparent;
-            title1.Text = "Thống kê số lượng ngành mỗi Khoa";
-            this.chartMenu.Titles.Add(title1);
+            title4.BorderColor = System.Drawing.Color.Transparent;
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Tile";
+            title4.ShadowColor = System.Drawing.Color.Transparent;
+            title4.Text = "Thống kê số lượng ngành mỗi Khoa";
+            this.chartMenu.Titles.Add(title4);
             // 
             // guna2Panel6
             // 
             this.guna2Panel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel6.BorderColor = System.Drawing.Color.Transparent;
             this.guna2Panel6.BorderRadius = 15;
+            this.guna2Panel6.Controls.Add(this.lbInfor4);
             this.guna2Panel6.Controls.Add(this.guna2HtmlLabel9);
             this.guna2Panel6.FillColor = System.Drawing.Color.White;
             this.guna2Panel6.Location = new System.Drawing.Point(901, 15);
@@ -216,7 +223,7 @@
             this.guna2HtmlLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel9.Location = new System.Drawing.Point(15, 55);
             this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            this.guna2HtmlLabel9.Size = new System.Drawing.Size(1000, 50);
+            this.guna2HtmlLabel9.Size = new System.Drawing.Size(1000, 41);
             this.guna2HtmlLabel9.TabIndex = 2;
             this.guna2HtmlLabel9.Text = "Đơn ứng tuyển";
             // 
@@ -225,6 +232,7 @@
             this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel3.BorderColor = System.Drawing.Color.Transparent;
             this.guna2Panel3.BorderRadius = 15;
+            this.guna2Panel3.Controls.Add(this.lbInfor3);
             this.guna2Panel3.Controls.Add(this.guna2HtmlLabel7);
             this.guna2Panel3.FillColor = System.Drawing.Color.White;
             this.guna2Panel3.Location = new System.Drawing.Point(605, 15);
@@ -244,7 +252,7 @@
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel7.Location = new System.Drawing.Point(15, 55);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(1000, 50);
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(1000, 41);
             this.guna2HtmlLabel7.TabIndex = 2;
             this.guna2HtmlLabel7.Text = "Tổng số ngành";
             // 
@@ -253,6 +261,7 @@
             this.guna2Panel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel2.BorderColor = System.Drawing.Color.Transparent;
             this.guna2Panel2.BorderRadius = 15;
+            this.guna2Panel2.Controls.Add(this.lbInfor2);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel5);
             this.guna2Panel2.FillColor = System.Drawing.Color.White;
             this.guna2Panel2.Location = new System.Drawing.Point(309, 15);
@@ -272,15 +281,16 @@
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(15, 55);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(1000, 50);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(1000, 41);
             this.guna2HtmlLabel5.TabIndex = 2;
-            this.guna2HtmlLabel5.Text = "Tin tuyển sinh";
+            this.guna2HtmlLabel5.Text = "Số tin tuyển sinh";
             // 
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.BorderColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.BorderRadius = 15;
+            this.guna2Panel1.Controls.Add(this.lbInfor1);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel2);
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
             this.guna2Panel1.Location = new System.Drawing.Point(12, 15);
@@ -293,6 +303,19 @@
             this.guna2Panel1.Size = new System.Drawing.Size(290, 175);
             this.guna2Panel1.TabIndex = 28;
             // 
+            // lbInfor1
+            // 
+            this.lbInfor1.AutoSize = false;
+            this.lbInfor1.BackColor = System.Drawing.Color.Transparent;
+            this.lbInfor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInfor1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbInfor1.Location = new System.Drawing.Point(39, 94);
+            this.lbInfor1.Name = "lbInfor1";
+            this.lbInfor1.Size = new System.Drawing.Size(241, 43);
+            this.lbInfor1.TabIndex = 1;
+            this.lbInfor1.Text = "A";
+            this.lbInfor1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // guna2HtmlLabel2
             // 
             this.guna2HtmlLabel2.AutoSize = false;
@@ -300,9 +323,48 @@
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(15, 55);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(1000, 50);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(1000, 41);
             this.guna2HtmlLabel2.TabIndex = 0;
             this.guna2HtmlLabel2.Text = "Số Thí Sinh Trúng Tuyển";
+            // 
+            // lbInfor2
+            // 
+            this.lbInfor2.AutoSize = false;
+            this.lbInfor2.BackColor = System.Drawing.Color.Transparent;
+            this.lbInfor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInfor2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbInfor2.Location = new System.Drawing.Point(39, 94);
+            this.lbInfor2.Name = "lbInfor2";
+            this.lbInfor2.Size = new System.Drawing.Size(241, 43);
+            this.lbInfor2.TabIndex = 3;
+            this.lbInfor2.Text = "A";
+            this.lbInfor2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbInfor3
+            // 
+            this.lbInfor3.AutoSize = false;
+            this.lbInfor3.BackColor = System.Drawing.Color.Transparent;
+            this.lbInfor3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInfor3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbInfor3.Location = new System.Drawing.Point(39, 94);
+            this.lbInfor3.Name = "lbInfor3";
+            this.lbInfor3.Size = new System.Drawing.Size(241, 43);
+            this.lbInfor3.TabIndex = 4;
+            this.lbInfor3.Text = "A";
+            this.lbInfor3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbInfor4
+            // 
+            this.lbInfor4.AutoSize = false;
+            this.lbInfor4.BackColor = System.Drawing.Color.Transparent;
+            this.lbInfor4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInfor4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbInfor4.Location = new System.Drawing.Point(39, 94);
+            this.lbInfor4.Name = "lbInfor4";
+            this.lbInfor4.Size = new System.Drawing.Size(241, 43);
+            this.lbInfor4.TabIndex = 5;
+            this.lbInfor4.Text = "A";
+            this.lbInfor4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UCHome
             // 
@@ -315,6 +377,7 @@
             this.DoubleBuffered = true;
             this.Name = "UCHome";
             this.Size = new System.Drawing.Size(1500, 1500);
+            this.Load += new System.EventHandler(this.UCHome_Load);
             this.guna2Panel7.ResumeLayout(false);
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel4.ResumeLayout(false);
@@ -341,5 +404,9 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMenu;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbInfor1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbInfor4;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbInfor3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbInfor2;
     }
 }

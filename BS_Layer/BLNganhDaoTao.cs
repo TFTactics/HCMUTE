@@ -60,5 +60,9 @@ namespace UI.BS_Layer
             string sqlString = "select * from ThongTinChuyenNganh where LoaiChuongTrinh = '"+value+"'";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text);
         }
+        public int DemSoNganh()
+        {
+            return LayThongTin().Tables[0].Rows.Count;
+        }    
     }
 }

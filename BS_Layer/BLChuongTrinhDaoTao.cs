@@ -37,5 +37,10 @@ namespace UI.BS_Layer
             DataSet ds = db.ExecuteQueryDataSet(sqlString,CommandType.Text);
             return ds.Tables[0];
         }
+        public int DemNganh(string x)
+        {
+            string sqlString = "select TenChuongTrinh from ChuongTrinhDaoTao where TenChuongTrinh=N'" + x + "'";
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0].Rows.Count;
+        }
     }
 }

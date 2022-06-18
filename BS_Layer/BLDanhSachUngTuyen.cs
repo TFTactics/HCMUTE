@@ -31,5 +31,15 @@ namespace UI.BS_Layer
                 + "'WHERE Email = N'" + email + "'" ;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
+
+        public int DemSoTSTrungTuyen()
+        {
+            string sqlString = "Select TrangThai from DanhSachUngTuyen where TrangThai=N'" + "Trúng Tuyển" + "'";
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0].Rows.Count;
+        }
+        public int DemSoDonUT()
+        {
+            return LayDanhSachUngTuyen().Tables[0].Rows.Count;
+        }
     }
 }

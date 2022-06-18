@@ -31,5 +31,9 @@ namespace UI.BS_Layer
                 + "'WHERE TieuDe = N'" + TieuDe + "'" ;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
+        public int DemSoTinTS()
+        {
+            return LayBangTin().Tables[0].Rows.Count;
+        }
     }
 }
