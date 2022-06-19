@@ -30,9 +30,15 @@ namespace UI.BS_Layer
             QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
             if (LayThongTin() == null)
                 ThemThongTin("", ref err);
-            foreach (var x in db.HocPhiHocBongs)
-                x.NoiDung = noidung;
-            return true;
+            var dsut = (from UT in db.HocPhiHocBongs
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.NoiDung = noidung;
+                db.SubmitChanges();
+                return true;
+            }
+            return false;
         }
         public void LayDuLieu(ref string GTC)
         {

@@ -77,6 +77,7 @@ namespace UI.BS_Layer
                 dsut.SoNganhDaoTaoTienSi = NganhTien;
                 dsut.SoNganhDaoTaoCuNhan = CuNhan;
                 dsut.VideoGioiThieu = vid;
+                db.SubmitChanges();
                 return true;
             }
             return false;

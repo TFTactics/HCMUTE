@@ -87,6 +87,7 @@ namespace UI.BS_Layer
             if (dsut != null)
             {
                 dsut.GioiThieu =GT ;
+                db.SubmitChanges();
                 return true;
             }
             return false;

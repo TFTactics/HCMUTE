@@ -94,6 +94,7 @@ namespace UI.BS_Layer
             {
                 dsut.BuocSo = BuocSo;
                 dsut.NoiDung = NoiDung;
+                db.SubmitChanges();
                 return true;
             }
             return false;

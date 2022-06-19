@@ -80,6 +80,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLiTuyenSinh.cs">
+      <DependentUpon>QuanLiTuyenSinh.dbml</DependentUpon>
+    </Compile>
     <Compile Include="QuanLiTuyenSinh.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

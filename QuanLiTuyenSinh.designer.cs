@@ -33,6 +33,9 @@ namespace UI
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
+    partial void InsertChuongTrinhDaoTao(ChuongTrinhDaoTao instance);
+    partial void UpdateChuongTrinhDaoTao(ChuongTrinhDaoTao instance);
+    partial void DeleteChuongTrinhDaoTao(ChuongTrinhDaoTao instance);
     partial void InsertDanhSachUngTuyen(DanhSachUngTuyen instance);
     partial void UpdateDanhSachUngTuyen(DanhSachUngTuyen instance);
     partial void DeleteDanhSachUngTuyen(DanhSachUngTuyen instance);
@@ -60,6 +63,9 @@ namespace UI
     partial void InsertThongTinChuyenNganh(ThongTinChuyenNganh instance);
     partial void UpdateThongTinChuyenNganh(ThongTinChuyenNganh instance);
     partial void DeleteThongTinChuyenNganh(ThongTinChuyenNganh instance);
+    partial void InsertThongTinKhoa(ThongTinKhoa instance);
+    partial void UpdateThongTinKhoa(ThongTinKhoa instance);
+    partial void DeleteThongTinKhoa(ThongTinKhoa instance);
     partial void InsertThongTinNguoiDung(ThongTinNguoiDung instance);
     partial void UpdateThongTinNguoiDung(ThongTinNguoiDung instance);
     partial void DeleteThongTinNguoiDung(ThongTinNguoiDung instance);
@@ -309,8 +315,10 @@ namespace UI
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChuongTrinhDaoTao")]
-	public partial class ChuongTrinhDaoTao
+	public partial class ChuongTrinhDaoTao : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _TenChuongTrinh;
 		
@@ -322,11 +330,28 @@ namespace UI
 		
 		private string _NoiDung;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTenChuongTrinhChanging(string value);
+    partial void OnTenChuongTrinhChanged();
+    partial void OnNganhDaoTaoChanging(string value);
+    partial void OnNganhDaoTaoChanged();
+    partial void OnHeDaoTaoChanging(string value);
+    partial void OnHeDaoTaoChanged();
+    partial void OnPDFDaoTaoChanging(string value);
+    partial void OnPDFDaoTaoChanged();
+    partial void OnNoiDungChanging(string value);
+    partial void OnNoiDungChanged();
+    #endregion
+		
 		public ChuongTrinhDaoTao()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenChuongTrinh", DbType="NVarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenChuongTrinh", DbType="NVarChar(MAX)", IsPrimaryKey=true)]
 		public string TenChuongTrinh
 		{
 			get
@@ -337,7 +362,11 @@ namespace UI
 			{
 				if ((this._TenChuongTrinh != value))
 				{
+					this.OnTenChuongTrinhChanging(value);
+					this.SendPropertyChanging();
 					this._TenChuongTrinh = value;
+					this.SendPropertyChanged("TenChuongTrinh");
+					this.OnTenChuongTrinhChanged();
 				}
 			}
 		}
@@ -353,7 +382,11 @@ namespace UI
 			{
 				if ((this._NganhDaoTao != value))
 				{
+					this.OnNganhDaoTaoChanging(value);
+					this.SendPropertyChanging();
 					this._NganhDaoTao = value;
+					this.SendPropertyChanged("NganhDaoTao");
+					this.OnNganhDaoTaoChanged();
 				}
 			}
 		}
@@ -369,7 +402,11 @@ namespace UI
 			{
 				if ((this._HeDaoTao != value))
 				{
+					this.OnHeDaoTaoChanging(value);
+					this.SendPropertyChanging();
 					this._HeDaoTao = value;
+					this.SendPropertyChanged("HeDaoTao");
+					this.OnHeDaoTaoChanged();
 				}
 			}
 		}
@@ -385,7 +422,11 @@ namespace UI
 			{
 				if ((this._PDFDaoTao != value))
 				{
+					this.OnPDFDaoTaoChanging(value);
+					this.SendPropertyChanging();
 					this._PDFDaoTao = value;
+					this.SendPropertyChanged("PDFDaoTao");
+					this.OnPDFDaoTaoChanged();
 				}
 			}
 		}
@@ -401,8 +442,32 @@ namespace UI
 			{
 				if ((this._NoiDung != value))
 				{
+					this.OnNoiDungChanging(value);
+					this.SendPropertyChanging();
 					this._NoiDung = value;
+					this.SendPropertyChanged("NoiDung");
+					this.OnNoiDungChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1950,18 +2015,31 @@ namespace UI
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThongTinKhoa")]
-	public partial class ThongTinKhoa
+	public partial class ThongTinKhoa : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _TenKhoa;
 		
 		private string _GioiThieu;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTenKhoaChanging(string value);
+    partial void OnTenKhoaChanged();
+    partial void OnGioiThieuChanging(string value);
+    partial void OnGioiThieuChanged();
+    #endregion
+		
 		public ThongTinKhoa()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenKhoa", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenKhoa", DbType="NVarChar(50)", IsPrimaryKey=true)]
 		public string TenKhoa
 		{
 			get
@@ -1972,7 +2050,11 @@ namespace UI
 			{
 				if ((this._TenKhoa != value))
 				{
+					this.OnTenKhoaChanging(value);
+					this.SendPropertyChanging();
 					this._TenKhoa = value;
+					this.SendPropertyChanged("TenKhoa");
+					this.OnTenKhoaChanged();
 				}
 			}
 		}
@@ -1988,8 +2070,32 @@ namespace UI
 			{
 				if ((this._GioiThieu != value))
 				{
+					this.OnGioiThieuChanging(value);
+					this.SendPropertyChanging();
 					this._GioiThieu = value;
+					this.SendPropertyChanged("GioiThieu");
+					this.OnGioiThieuChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

@@ -99,6 +99,7 @@ namespace UI.BS_Layer
                 dsut.NganhDaoTao = NDT;
                 dsut.PDFDaoTao = PDF;
                 dsut.NoiDung = ND;
+                db.SubmitChanges();
                 return true;
             }
             return false;
@@ -106,11 +107,13 @@ namespace UI.BS_Layer
         public DataTable LayTenChuongTrinh()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Ten CT");
+            dt.Columns.Add("TenChuongTrinh");
             QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
-            
+
             foreach (var UT in LayChuongTrinhDaoTao())
-                dt.Rows.Add(UT.TenChuongTrinh.ToString());
+            {
+                dt.Rows.Add(UT.TenChuongTrinh);
+            }
             return dt;
         }
         public int DemNganh(string x)

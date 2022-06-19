@@ -91,6 +91,7 @@ namespace UI.BS_Layer
             {
                 dsut.TenHeDaoTao = TenHDT;
                 dsut.GioiThieu = GT;
+                db.SubmitChanges();
                 return true;
             }
             return false;

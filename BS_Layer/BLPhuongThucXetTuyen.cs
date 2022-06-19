@@ -114,6 +114,7 @@ namespace UI.BS_Layer
                 dsut.HinhAnh = Anh;
                 dsut.NoiDung = NoiDung;
                 dsut.PhuongThucCha = PTCha;
+                db.SubmitChanges();
                 return true;
             }
             return false;

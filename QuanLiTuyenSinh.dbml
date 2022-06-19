@@ -8,7 +8,7 @@
   </Table>
   <Table Name="dbo.ChuongTrinhDaoTao" Member="ChuongTrinhDaoTaos">
     <Type Name="ChuongTrinhDaoTao">
-      <Column Name="TenChuongTrinh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TenChuongTrinh" Type="System.String" DbType="NVarChar(MAX)" IsPrimaryKey="true" CanBeNull="true" />
       <Column Name="NganhDaoTao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="HeDaoTao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PDFDaoTao" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -103,7 +103,7 @@
   </Table>
   <Table Name="dbo.ThongTinKhoa" Member="ThongTinKhoas">
     <Type Name="ThongTinKhoa">
-      <Column Name="TenKhoa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenKhoa" Type="System.String" DbType="NVarChar(50)" IsPrimaryKey="true" CanBeNull="true" />
       <Column Name="GioiThieu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>

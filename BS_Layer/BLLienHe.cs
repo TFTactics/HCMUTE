@@ -41,7 +41,8 @@ namespace UI.BS_Layer
                 dsut.SoDienThoai = SoDT;
                 dsut.Fanpage = Fanpage;
                 dsut.PhongBanLienHe = PhongBanLH;
-                dsut.VanPhong = VanPhong; ;
+                dsut.VanPhong = VanPhong;
+                db.SubmitChanges();
                 return true;
             }
             return false;

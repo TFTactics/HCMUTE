@@ -96,6 +96,7 @@ namespace UI.BS_Layer
                 dsut.HoTen = HoTen;
                 dsut.DienThoai = DienThoai;
                 dsut.LoaiNguoiDung = LoaiNGuoiDung;
+                db.SubmitChanges();
                 return true;
             }
             return false;

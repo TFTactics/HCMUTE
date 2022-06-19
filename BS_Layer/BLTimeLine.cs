@@ -4,6 +4,7 @@ using System;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace UI.BS_Layer
 {
@@ -70,8 +71,8 @@ namespace UI.BS_Layer
             QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
             TimeLine dsut = new TimeLine();
             dsut.TenSuKien = TenSuKien;
-            dsut.ThoiGianBatDau = BatDau;
-            dsut.ThoiGianKetThuc = KetThuc;
+            dsut.ThoiGianBatDau = BatDau.Date;
+            dsut.ThoiGianKetThuc = KetThuc.Date;
             dsut.HeDaoTao = HeDaoTao;
             dsut.NoiDung = NoiDung;
 
@@ -97,10 +98,12 @@ namespace UI.BS_Layer
                         select UT).SingleOrDefault();
             if (dsut != null)
             {
+                MessageBox.Show(KetThuc);
                 dsut.ThoiGianBatDau = Convert.ToDateTime(NgayDang).Date;
                 dsut.ThoiGianKetThuc = Convert.ToDateTime(KetThuc).Date;
                 dsut.HeDaoTao = HDT;
                 dsut.NoiDung = NoiDung;
+                db.SubmitChanges();
                 return true;
             }
             return false;

@@ -153,7 +153,7 @@ namespace UI.View_Layer
             DataTable dt = dbCTDT.LayTenChuongTrinh();
 
             DataRow row = dt.NewRow();
-            row["Ten CT"] = "Tất cả";
+            row["TenChuongTrinh"] = "Tất cả";
             dt.Rows.Add(row);
 
             cbbLoaiCT.DisplayMember = "TenChuongTrinh";

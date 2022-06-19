@@ -3,6 +3,7 @@ using UI.BD_Layer;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace UI.BS_Layer
 {
@@ -97,6 +98,7 @@ namespace UI.BS_Layer
                 dsut.NoiDung = NoiDung;
                 dsut.HeDaoTao = HeDaoTao;
                 dsut.TrangThai = TrangThai;
+                db.SubmitChanges();
                 return true;
             }
             return false;

@@ -80,6 +80,7 @@ namespace UI.BS_Layer
             dsut.SDT = SDT;
             dsut.MaHoSo = MaHoSo;
             dsut.MaNguyenVong = MaNguyenVong;
+            dsut.NganhUngTuyen = NganhUngTuyen;
             dsut.TrangThai = TrangThai;
             dsut.PhuongThuc = PhuongThuc;
 
@@ -97,7 +98,7 @@ namespace UI.BS_Layer
             qlBH.SubmitChanges();
             return true;
         }
-        public bool SuaDanhSachUngTuyen(ref string err, string Hoten, string email, string sdt,int MaHS,int MaNV, string TrangThai, string PT)
+        public bool SuaDanhSachUngTuyen(ref string err, string Hoten, string email, string sdt,int MaHS,int MaNV, string TrangThai,string Nganh, string PT)
         {
             QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
             var dsut=(from UT in db.DanhSachUngTuyens
@@ -110,7 +111,9 @@ namespace UI.BS_Layer
                 dsut.MaHoSo = MaHS;
                 dsut.MaNguyenVong = MaNV;
                 dsut.TrangThai = TrangThai;
+                dsut.NganhUngTuyen = Nganh;
                 dsut.PhuongThuc = PT;
+                db.SubmitChanges();
                 return true;
             }
             return false;
