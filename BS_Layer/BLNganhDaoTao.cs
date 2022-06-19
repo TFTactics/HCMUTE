@@ -4,13 +4,72 @@ using System.Linq;
 using UI.BD_Layer;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
+using System.Linq;
 
 namespace UI.BS_Layer
 {
     internal class BLNganhDaoTao
     {
+<<<<<<< HEAD
         
         public Table<ThongTinChuyenNganh> LayThongTin()
+=======
+        public Table<ThongTinChuyenNganh> LayThongTin()
+        {
+            DataSet ds = new DataSet();
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            return qlTS.ThongTinChuyenNganhs;
+        }
+
+        public bool ThemNganhDaoTao(string MaNganh, string TenN, string LoaiCT, string Khoa, int ChiTieu, int HocPhi, string MoTa, ref string err)
+        {
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            ThongTinChuyenNganh tt = new ThongTinChuyenNganh();
+            tt.MaNganh = MaNganh;
+            tt.TenNganh = TenN;
+            tt.LoaiChuongTrinh = LoaiCT;
+            tt.Khoa = Khoa;
+            tt.ChiTieu = ChiTieu;
+            tt.HocPhi = HocPhi;
+            tt.MoTaNganh = MoTa;
+
+            qlTS.ThongTinChuyenNganhs.InsertOnSubmit(tt);
+            qlTS.ThongTinChuyenNganhs.Context.SubmitChanges();
+            return true;
+        }
+        public bool XoaNganh(ref string err, string MaNgang)
+        {
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            var tsQuery = from tp in qlTS.ThongTinChuyenNganhs
+                          where tp.MaNganh == MaNgang
+                          select tp;
+
+            qlTS.ThongTinChuyenNganhs.DeleteAllOnSubmit(tsQuery);
+            qlTS.SubmitChanges();
+            return true;
+        }
+        public bool SuaNganh(ref string err, string MaNganh, string TenN, string LoaiCT, string Khoa, int ChiTieu, int HocPhi, string MoTa)
+        {
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            var tsQuery = (from ts in qlTS.ThongTinChuyenNganhs
+                           where ts.MaNganh == MaNganh
+                           select ts).SingleOrDefault();
+            if (tsQuery != null)
+            {
+                tsQuery.TenNganh = TenN;
+                tsQuery.LoaiChuongTrinh = LoaiCT;
+                tsQuery.Khoa = Khoa;
+                tsQuery.ChiTieu = ChiTieu;
+                tsQuery.HocPhi = HocPhi;
+                tsQuery.MoTaNganh = MoTa;
+                qlTS.SubmitChanges();
+            }
+            return true;
+        }
+
+        DBMain db = null;
+        public BLNganhDaoTao()
+>>>>>>> 2df9283e60f58f6c9ba8a8a08bb6c6c938413f2d
         {
             QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
 
