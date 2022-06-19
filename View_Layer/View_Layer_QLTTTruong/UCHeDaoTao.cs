@@ -40,12 +40,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtHeDaoTao = new DataTable();
-                dtHeDaoTao.Clear();
-
-                DataSet ds = dbHeDaoTao.LayHeDaoTao();
-                dtHeDaoTao = ds.Tables[0];
-                dgvCTDaoTao.DataSource = dtHeDaoTao;
+                dgvCTDaoTao.DataSource = dbHeDaoTao.LayHeDaoTao();
 
                 dgvCTDaoTao.AutoResizeColumns();
                 HideBtn(true);

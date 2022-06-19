@@ -36,12 +36,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtDanhSachNguoiDung = new DataTable();
-                dtDanhSachNguoiDung.Clear();
-
-                DataSet ds = dbThongTinNguoiDung.LayThongTinNguoiDung();
-                dtDanhSachNguoiDung = ds.Tables[0];
-                dgvThongTinNguoiDung.DataSource = dtDanhSachNguoiDung;
+                dgvThongTinNguoiDung.DataSource = dbThongTinNguoiDung.LayThongTinNguoiDung();
 
                 dgvThongTinNguoiDung.AutoResizeColumns();
                 HideBtn(true);

@@ -8,7 +8,6 @@ namespace UI.View_Layer
 {
     public partial class UCCTDaoTao : UserControl
     {
-        DataTable dtCTDT = null;
         BLChuongTrinhDaoTao dbCTDT = new BLChuongTrinhDaoTao();
         string err;
 
@@ -41,12 +40,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtCTDT = new DataTable();
-                dtCTDT.Clear();
-
-                DataSet ds = dbCTDT.LayChuongTrinhDaoTao();
-                dtCTDT = ds.Tables[0];
-                dgvCTDaoTao.DataSource = dtCTDT;
+                dgvCTDaoTao.DataSource = dbCTDT.LayChuongTrinhDaoTao();
 
                 dgvCTDaoTao.AutoResizeColumns();
                 HideBtn(true);

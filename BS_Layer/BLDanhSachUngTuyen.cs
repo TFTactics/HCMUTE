@@ -65,41 +65,68 @@ namespace UI.BS_Layer
             return true;
         }*/
         
-        DBMain db = null;
-        public BLDanhSachUngTuyen()
+        public Table<DanhSachUngTuyen> LayDanhSachUngTuyen()
         {
-            db=new DBMain();
-        }
-        public DataSet LayDanhSachUngTuyen()
-        {
-            return db.ExecuteQueryDataSet("select * from DanhSachUngTuyen", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+            
+            return slts.DanhSachUngTuyens;
         }
         public bool ThemDanhSachUngTuyen(string HoTen, string Email,string SDT, int MaHoSo, int MaNguyenVong, string NganhUngTuyen, string TrangThai, string PhuongThuc, ref string err)
         {
-            string sqlString = "Insert into DanhSachUngTuyen values (" + "N'" + HoTen + "',N'" + Email + "',N'" + SDT + "','" + MaHoSo + "','" + MaNguyenVong + "',N'" + NganhUngTuyen + "',N'" + TrangThai + "',N'" + PhuongThuc + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            DanhSachUngTuyen dsut = new DanhSachUngTuyen();
+            dsut.HoTen = HoTen;
+            dsut.Email = Email;
+            dsut.SDT = SDT;
+            dsut.MaHoSo = MaHoSo;
+            dsut.MaNguyenVong = MaNguyenVong;
+            dsut.TrangThai = TrangThai;
+            dsut.PhuongThuc = PhuongThuc;
+
+            db.DanhSachUngTuyens.InsertOnSubmit(dsut);
+            db.DanhSachUngTuyens.Context.SubmitChanges();
+            return true;
         }
         public bool XoaDanhSachUngTuyen(ref string err, string email)
         {
-            string sqlString = "delete from DanhSachUngTuyen where Email=N'" + email +"'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.DanhSachUngTuyens
+                          where hd.Email == email
+                          select hd;
+            qlBH.DanhSachUngTuyens.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaDanhSachUngTuyen(ref string err, string Hoten, string email, string sdt,int MaHS,int MaNV, string TrangThai, string PT)
         {
-            string sqlString = "Update DanhSachUngTuyen SET HoTen=N'" + Hoten + 
-                "',SDT=N'" + sdt +"',MaHoSo='"+MaHS+"',MaNguyenVong='"+MaNV+ "',TrangThai=N'" + TrangThai+"',PhuongThuc=N'"+PT
-                + "'WHERE Email = N'" + email + "'" ;
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut=(from UT in db.DanhSachUngTuyens
+                  where UT.Email==email
+                  select UT).SingleOrDefault();
+            if(dsut!=null)
+            {
+                dsut.HoTen = Hoten;
+                dsut.SDT = sdt;
+                dsut.MaHoSo = MaHS;
+                dsut.MaNguyenVong = MaNV;
+                dsut.TrangThai = TrangThai;
+                dsut.PhuongThuc = PT;
+                return true;
+            }
+            return false;
         }
 
         public int DemSoTSTrungTuyen()
         {
-            string sqlString = "Select TrangThai from DanhSachUngTuyen where TrangThai=N'" + "Trúng Tuyển" + "'";
-            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0].Rows.Count;
+            int count = 0;
+            foreach (var x in LayDanhSachUngTuyen())
+                if (x.TrangThai == "Trúng Tuyển")
+                    count++;
+            return count;
         }
         public int DemSoDonUT()
         {
-            return LayDanhSachUngTuyen().Tables[0].Rows.Count;
+            return LayDanhSachUngTuyen().Count();
         }
     }
 }

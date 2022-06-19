@@ -56,30 +56,47 @@ namespace UI.BS_Layer
             return true;
         }*/
 
-        DBMain db = null;
-        public BLThongTinNhapHoc()
+        public Table<ThongTinNhapHoc> LayThongTinNhapHoc()
         {
-            db=new DBMain();
-        }
-        public DataSet LayThongTinNhapHoc()
-        {
-            return db.ExecuteQueryDataSet("select * from ThongTinNhapHoc", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.ThongTinNhapHocs;
         }
         public bool ThemThongTinNhapHoc(string NDNhapHoc, string BuocSo,string NoiDung, ref string err)
         {
-            string sqlString = "Insert into ThongTinNhapHoc values (" + "N'" + NDNhapHoc + "',N'" + BuocSo + "',N'" + NoiDung + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            ThongTinNhapHoc dsut = new ThongTinNhapHoc();
+            dsut.NoiDungNhapHoc = NDNhapHoc;
+            dsut.BuocSo = BuocSo;
+            dsut.NoiDung = NoiDung;
+
+            db.ThongTinNhapHocs.InsertOnSubmit(dsut);
+            db.ThongTinNhapHocs.Context.SubmitChanges();
+            return true;
         }
         public bool XoaThongTin(ref string err, string NoiDungNhapHoc)
         {
-            string sqlString = "delete from ThongTinNhapHoc where NoiDungNhapHoc=N'" + NoiDungNhapHoc + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.ThongTinNhapHocs
+                          where hd.NoiDungNhapHoc == NoiDungNhapHoc
+                          select hd;
+            qlBH.ThongTinNhapHocs.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaThongTin(string NDNhapHoc, string BuocSo, string NoiDung, ref string err)
         {
-            string sqlString = "UPDATE ThongTinNhapHoc SET BuocSo=N'" + BuocSo + "',NoiDung=N'" 
-                + NoiDung + "'WHERE NoiDungNhapHoc=N'" + NDNhapHoc + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.ThongTinNhapHocs
+                        where UT.NoiDungNhapHoc == NDNhapHoc
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.BuocSo = BuocSo;
+                dsut.NoiDung = NoiDung;
+                return true;
+            }
+            return false;
         }
     }
 }

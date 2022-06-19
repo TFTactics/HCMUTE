@@ -40,12 +40,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtTimeLine = new DataTable();
-                dtTimeLine.Clear();
-
-                DataSet ds = dbTimeLine.LayTimeLine();
-                dtTimeLine = ds.Tables[0];
-                dgvTimeLine.DataSource= dtTimeLine;
+                dgvTimeLine.DataSource= dbTimeLine.LayTimeLine();
 
                 dgvTimeLine.AutoResizeColumns();
                 HideBtn(true);

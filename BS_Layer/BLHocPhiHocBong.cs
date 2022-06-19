@@ -2,42 +2,47 @@
 using System.Data;
 using UI.BD_Layer;
 using System.Data.Linq;
+using System.Linq;
 using System.Data.Linq.Mapping;
 
 namespace UI.BS_Layer
 {
     internal class BLHocPhiHocBong
     {
-        DBMain db = null;
-        public BLHocPhiHocBong()
+        public Table<HocPhiHocBong> LayThongTin()
         {
-            db = new DBMain();
-        }
-        public DataSet LayThongTin()
-        {
-            return db.ExecuteQueryDataSet("select * from HocPhiHocBong", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.HocPhiHocBongs;
         }
         public bool ThemThongTin(string NoiDung, ref string err)
         {
-            string sqlString = "insert into HocPhiHocBong values(N'"+NoiDung +"')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            HocPhiHocBong dsut = new HocPhiHocBong();
+            dsut.NoiDung = NoiDung;
+
+            db.HocPhiHocBongs.InsertOnSubmit(dsut);
+            db.HocPhiHocBongs.Context.SubmitChanges();
+            return true;
         }
         public bool SuaThongTin(string noidung, ref string err)
         {
-            string sqlString = "UPDATE HocPhiHocBong SET " + "NoiDung = " +
-                "N'" + noidung + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            if (LayThongTin() == null)
+                ThemThongTin("", ref err);
+            foreach (var x in db.HocPhiHocBongs)
+                x.NoiDung = noidung;
+            return true;
         }
         public void LayDuLieu(ref string GTC)
         {
-            string err = " ";
-            DataSet ds = LayThongTin();
-            DataTable dtGTC = new DataTable();
-            dtGTC.Clear();
-            dtGTC = ds.Tables[0];
-            if (dtGTC.Rows.Count > 0)
-                GTC = dtGTC.Rows[0][0].ToString();
-            else ThemThongTin(" ", ref err);
+            string err = "";
+            if (LayThongTin() == null)
+                ThemThongTin("", ref err);
+            foreach (var x in LayThongTin())
+            {
+                GTC = x.NoiDung;
+            }
             
         }
     }

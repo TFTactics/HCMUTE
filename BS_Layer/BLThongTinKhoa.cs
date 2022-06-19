@@ -51,30 +51,45 @@ namespace UI.BS_Layer
             return true;
         }*/
 
-        DBMain db = null;
-        public BLThongTinKhoa()
+        public Table<ThongTinKhoa> LayThongTinKhoa()
         {
-            db=new DBMain();
-        }
-        public DataSet LayThongTinKhoa()
-        {
-            return db.ExecuteQueryDataSet("select * from ThongTinKhoa", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.ThongTinKhoas;
         }
         public bool ThemThongTinKhoa(string TenKhoa, string GioiThieu, ref string err)
         {
-            string sqlString = "Insert into ThongTinKhoa values (" + "N'" + TenKhoa + "',N'" + GioiThieu + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            ThongTinKhoa dsut = new ThongTinKhoa();
+            dsut.TenKhoa = TenKhoa;
+            dsut.GioiThieu = GioiThieu;
+
+            db.ThongTinKhoas.InsertOnSubmit(dsut);
+            db.ThongTinKhoas.Context.SubmitChanges();
+            return true;
         }
         public bool XoaThongTinKhoa(ref string err, string TenKhoa)
         {
-            string sqlString = "delete from ThongTinKhoa where TenKhoa=N'" + TenKhoa+ "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.ThongTinKhoas
+                          where hd.TenKhoa == TenKhoa
+                          select hd;
+            qlBH.ThongTinKhoas.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaThongTinKhoa(ref string err, string TenKhoa, string GT)
         {
-            string sqlString = "UPDATE ThongTinKhoa SET GioiThieu=N'" + GT + "'WHERE TenKhoa=N'" +TenKhoa
-                + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.ThongTinKhoas
+                        where UT.TenKhoa == TenKhoa
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.GioiThieu =GT ;
+                return true;
+            }
+            return false;
         }
     }
 }

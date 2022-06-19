@@ -65,31 +65,58 @@ namespace UI.BS_Layer
             return true;
         }
 */
-        DBMain db = null;
-        public BLPhuongThucXetTuyen()
+        
+        public Table<PhuongThucXetTuyen> LayPhuongThucXetTuyen()
         {
-            db=new DBMain();
-        }
-        public DataSet LayPhuongThucXetTuyen()
-        {
-            return db.ExecuteQueryDataSet("select * from PhuongThucXetTuyen", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.PhuongThucXetTuyens;
         }
         public bool ThemPhuongThucXetTuyen(string TenPT, string MaPT, string HeDT, DateTime TGBD , DateTime TGKT, string Anh, string NoiDung, string PTCha,ref string err)
         {
-            string sqlString = "Insert into PhuongThucXetTuyen values (" + "N'" + TenPT + "',N'" + MaPT + "',N'" + HeDT + "','" + TGBD.ToString("yyyy-MM-dd") + "','" + TGKT.ToString("yyyy-MM-dd") + "',N'" + Anh + "',N'" + NoiDung + "',N'" + PTCha + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            PhuongThucXetTuyen dsut = new PhuongThucXetTuyen();
+            dsut.TenPhuongThuc = TenPT;
+            dsut.MaPhuongThuc = MaPT;
+            dsut.HeDaoTao = HeDT;
+            dsut.ThoiGianBatDau = TGBD;
+            dsut.ThoiGianKetThuc = TGKT;
+            dsut.HinhAnh = Anh;
+            dsut.NoiDung = NoiDung;
+            dsut.PhuongThucCha = PTCha;
+
+            db.PhuongThucXetTuyens.InsertOnSubmit(dsut);
+            db.PhuongThucXetTuyens.Context.SubmitChanges();
+            return true;
         }
         public bool XoaPhuongThucXetTuyen(ref string err, string MaPhuongThuc)
         {
-            string sqlString = "delete from PhuongThucXetTuyen where MaPhuongThuc=N'" + MaPhuongThuc + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.PhuongThucXetTuyens
+                          where hd.MaPhuongThuc == MaPhuongThuc
+                          select hd;
+            qlBH.PhuongThucXetTuyens.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaPhuongThuc(ref string err, string TenPT, string MaPT, string HeDT, DateTime TGBD, DateTime TGKT, string Anh, string NoiDung, string PTCha)
         {
-            string sqlString = "UPDATE PhuongThucXetTuyen SET TenPhuongThuc=N'"+TenPT+"',HeDaoTao=N'"+HeDT+"',ThoiGianBatDau=N'"+TGBD.Date
-                +"',ThoiGianKetThuc = N'"+TGKT.Date+"',HinhAnh = N'"+Anh+"',NoiDung = N'"+NoiDung
-                +"',PhuongThucCha = N'"+PTCha+"' WHERE MaPhuongThuc = N'"+MaPT+"'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.PhuongThucXetTuyens
+                        where UT.MaPhuongThuc == MaPT
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.TenPhuongThuc = TenPT;
+                dsut.HeDaoTao = HeDT;
+                dsut.ThoiGianBatDau = TGBD;
+                dsut.ThoiGianKetThuc = TGKT;
+                dsut.HinhAnh = Anh;
+                dsut.NoiDung = NoiDung;
+                dsut.PhuongThucCha = PTCha;
+                return true;
+            }
+            return false;
         }
     }
 }

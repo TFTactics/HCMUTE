@@ -8,7 +8,6 @@ namespace UI.View_Layer
 {
     public partial class UCQLBangTinTuyenSinh : UserControl
     {
-        DataTable dtTinTuyenSinh = null;
         BLBangTinTuyenSinh dbTinTuyyenSinh = new BLBangTinTuyenSinh();
         string err;
         private bool checkUC = false;
@@ -73,12 +72,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtTinTuyenSinh = new DataTable();
-                dtTinTuyenSinh.Clear();
-
-                DataSet ds = dbTinTuyyenSinh.LayBangTin();
-                dtTinTuyenSinh = ds.Tables[0];
-                dgvTinTuyenSinh.DataSource = dtTinTuyenSinh;
+                dgvTinTuyenSinh.DataSource = dbTinTuyyenSinh.LayBangTin();
 
                 dgvTinTuyenSinh.AutoResizeColumns();
                 HideBtn(true);

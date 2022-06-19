@@ -20,6 +20,7 @@ namespace UI.View_Layer
             lbInfor2.Text = dbBTTS.DemSoTinTS().ToString();
             lbInfor3.Text = dbNgDT.DemSoNganh().ToString();
             lbInfor4.Text = dbDSUT.DemSoDonUT().ToString();
+            MessageBox.Show(dbBTTS.DemSoTinTS().ToString() + dbNgDT.DemSoNganh().ToString() + dbDSUT.DemSoDonUT().ToString());
 
             chartMenu.Series["Khoa"].Points[0].SetValueY(dbCTDT.DemNganh("Cơ Khí Chế Tạo Máy"));
             chartMenu.Series["Khoa"].Points[1].SetValueY(dbCTDT.DemNganh("Cơ Khí Động Lực"));

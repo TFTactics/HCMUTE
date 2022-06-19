@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using UI.BD_Layer;
 using System.Data.Linq;
-using System.Data.Linq.Mapping;
 using System.Linq;
+using System.Data.Linq.Mapping;
 
 namespace UI.BS_Layer
 {
@@ -57,42 +57,69 @@ namespace UI.BS_Layer
             }
         }*/
 
-        DBMain db = null;
-        public BLChuongTrinhDaoTao()
+        public Table<ChuongTrinhDaoTao> LayChuongTrinhDaoTao()
         {
-            db = new DBMain();
-        }
-        public DataSet LayChuongTrinhDaoTao()
-        {
-            return db.ExecuteQueryDataSet("select * from ChuongTrinhDaoTao", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.ChuongTrinhDaoTaos;
         }
         public bool ThemChuongTrinhDaoTao(string TenCTDT, string NganhDaoTao, string HeDaoTao, string PDFDaoTao, string NoiDung, ref string err)
         {
-            string sqlString = "Insert into ChuongTrinhDaoTao values (" + "N'" + TenCTDT + "',N'" + NganhDaoTao + "',N'" + HeDaoTao + "',N'" + PDFDaoTao + "',N'" + NoiDung + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            ChuongTrinhDaoTao dsut = new ChuongTrinhDaoTao();
+            dsut.TenChuongTrinh = TenCTDT;
+            dsut.NganhDaoTao = NganhDaoTao;
+            dsut.HeDaoTao = HeDaoTao;
+            dsut.PDFDaoTao = PDFDaoTao;
+            dsut.NoiDung = NoiDung;
+
+            db.ChuongTrinhDaoTaos.InsertOnSubmit(dsut);
+            db.ChuongTrinhDaoTaos.Context.SubmitChanges();
+            return true;
         }
-        public bool XoaChuongTrinhDaoTao(ref string err, string TieuDe)
+        public bool XoaChuongTrinhDaoTao(ref string err, string TenCT)
         {
-            string sqlString = "delete from ChuongTrinhDaoTao where NganhDaoTao=N'" + TieuDe + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.ChuongTrinhDaoTaos
+                          where hd.TenChuongTrinh == TenCT
+                          select hd;
+            qlBH.ChuongTrinhDaoTaos.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaChuongTrinh(ref string err, string TCT, string NDT, string HDT, string PDF, string ND)
         {
-            string sqlString = "UPDATE ChuongTrinhDaoTao SET TenChuongTrinh=N'" + TCT +
-                "',NganhDaoTao=N'" + NDT + "',HeDaoTao=N'" + HDT + "',PDFDaoTao=N'" + PDF +
-                "',NoiDung=N'" + ND + "'WHERE TenChuongTrinh = N'" + TCT + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.ChuongTrinhDaoTaos
+                        where UT.TenChuongTrinh == TCT
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.HeDaoTao = HDT;
+                dsut.NganhDaoTao = NDT;
+                dsut.PDFDaoTao = PDF;
+                dsut.NoiDung = ND;
+                return true;
+            }
+            return false;
         }
         public DataTable LayTenChuongTrinh()
         {
-            string sqlString = "Select TenChuongTrinh from ChuongTrinhDaoTao";
-            DataSet ds = db.ExecuteQueryDataSet(sqlString, CommandType.Text);
-            return ds.Tables[0];
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Ten CT");
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            
+            foreach (var UT in LayChuongTrinhDaoTao())
+                dt.Rows.Add(UT.TenChuongTrinh.ToString());
+            return dt;
         }
         public int DemNganh(string x)
         {
-            string sqlString = "select TenChuongTrinh from ChuongTrinhDaoTao where TenChuongTrinh=N'" + x + "'";
-            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0].Rows.Count;
+            int count = 0;
+            foreach (var a in LayChuongTrinhDaoTao())
+                if (a.TenChuongTrinh == x)
+                    count++;
+            return count;
         }
     }
 }

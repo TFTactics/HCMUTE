@@ -8,7 +8,6 @@ namespace UI.View_Layer
 {
     public partial class UCNganhDaoTao : UserControl
     {
-        DataTable dtNganhDT = null;
         BLNganhDaoTao dbNganhDT = new BLNganhDaoTao();
         string err;
         public UCNganhDaoTao()
@@ -51,12 +50,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtNganhDT= new DataTable();
-                dtNganhDT.Clear();
-
-                DataSet ds = dbNganhDT.LayThongTin();
-                dtNganhDT = ds.Tables[0];
-                dgvDSNganh.DataSource = dtNganhDT;
+                dgvDSNganh.DataSource = dbNganhDT.LayThongTin();
 
                 dgvDSNganh.AutoResizeColumns();
                 HideBtn(true);
@@ -140,11 +134,7 @@ namespace UI.View_Layer
         {
             if (txtSearch.Text != "")
             {
-                DataSet ds = dbNganhDT.SearchNganh(txtSearch.Text);
-                dtNganhDT = new DataTable();
-                dtNganhDT.Clear();
-                dtNganhDT = ds.Tables[0];
-                dgvDSNganh.DataSource = dtNganhDT;
+                dgvDSNganh.DataSource = dbNganhDT.SearchNganh(txtSearch.Text);
                 dgvDSNganh.AutoResizeColumns();
                 HideBtn(true);
             }
@@ -163,7 +153,7 @@ namespace UI.View_Layer
             DataTable dt = dbCTDT.LayTenChuongTrinh();
 
             DataRow row = dt.NewRow();
-            row["TenChuongTrinh"] = "Tất cả";
+            row["Ten CT"] = "Tất cả";
             dt.Rows.Add(row);
 
             cbbLoaiCT.DisplayMember = "TenChuongTrinh";
@@ -179,11 +169,7 @@ namespace UI.View_Layer
                 LoadData();
             else
             {
-                dtNganhDT = new DataTable();
-                dtNganhDT.Clear();
-                DataSet ds = dbNganhDT.LocLoaiCT(cbbLoaiCT.Text);
-                dtNganhDT = ds.Tables[0];
-                dgvDSNganh.DataSource = dtNganhDT;
+                dgvDSNganh.DataSource = dbNganhDT.LocLoaiCT(cbbLoaiCT.Text);
                 dgvDSNganh.AutoResizeColumns();
                 HideBtn(true);
             }

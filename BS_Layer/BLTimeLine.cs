@@ -58,30 +58,52 @@ namespace UI.BS_Layer
             }
             return true;
         }*/
-        DBMain db = null;
-        public BLTimeLine()
+        
+        public Table<TimeLine> LayTimeLine()
         {
-            db = new DBMain();
-        }
-        public DataSet LayTimeLine()
-        {
-            return db.ExecuteQueryDataSet("select * from TimeLine", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.TimeLines;
         }
         public bool ThemTimeLine(string TenSuKien, DateTime BatDau, DateTime KetThuc, string HeDaoTao, string NoiDung, ref string err)
         {
-            string sqlString = "Insert into TimeLine values (" + "N'" + TenSuKien + "',N'" + BatDau.ToString("yyyy-MM-dd") + "',N'" + KetThuc.ToString("yyyy-MM-dd") + "',N'" + HeDaoTao + "',N'" + NoiDung + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            TimeLine dsut = new TimeLine();
+            dsut.TenSuKien = TenSuKien;
+            dsut.ThoiGianBatDau = BatDau;
+            dsut.ThoiGianKetThuc = KetThuc;
+            dsut.HeDaoTao = HeDaoTao;
+            dsut.NoiDung = NoiDung;
+
+            db.TimeLines.InsertOnSubmit(dsut);
+            db.TimeLines.Context.SubmitChanges();
+            return true;
         }
-        public bool XoaBangTin(ref string err, string TieuDe)
+        public bool XoaBangTin(ref string err, string TenSk)
         {
-            string sqlString = "delete from TimeLine where TenSuKien=N'" + TieuDe + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.TimeLines
+                          where hd.TenSuKien == TenSk
+                          select hd;
+            qlBH.TimeLines.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaBangTin(ref string err, string TenSK, string NgayDang, string KetThuc, string HDT, string NoiDung)
         {
-            string sqlString = "UPDATE TimeLine SET ThoiGianBatDau=N'" + Convert.ToDateTime(NgayDang).Date + "',ThoiGianKetThuc=N'"
-                + Convert.ToDateTime(KetThuc).Date + "',HeDaoTao=N'" + HDT + "',NoiDung=N'" + NoiDung + "'WHERE TenSuKien=N'" + TenSK + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.TimeLines
+                        where UT.TenSuKien == TenSK
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.ThoiGianBatDau = Convert.ToDateTime(NgayDang).Date;
+                dsut.ThoiGianKetThuc = Convert.ToDateTime(KetThuc).Date;
+                dsut.HeDaoTao = HDT;
+                dsut.NoiDung = NoiDung;
+                return true;
+            }
+            return false;
         }
     }
 }

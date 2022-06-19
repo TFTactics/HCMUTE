@@ -56,30 +56,49 @@ namespace UI.BS_Layer
             return true;
         }*/
 
-        DBMain db = null;
-        public BLThongTinNguoiDung()
+        public Table<ThongTinNguoiDung> LayThongTinNguoiDung()
         {
-            db=new DBMain();
-        }
-        public DataSet LayThongTinNguoiDung()
-        {
-            return db.ExecuteQueryDataSet("select * from ThongTinNguoiDung", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.ThongTinNguoiDungs;
         }
         public bool ThemNguoiDung(string HoTen, string DienThoai,string Email, string LoaiNGuoiDung, ref string err)
         {
-            string sqlString = "Insert into ThongTinNguoiDung values (" + "N'" + HoTen + "',N'" + DienThoai + "',N'" + Email + "',N'" + LoaiNGuoiDung + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            ThongTinNguoiDung dsut = new ThongTinNguoiDung();
+            dsut.HoTen = HoTen;
+            dsut.DienThoai = DienThoai;
+            dsut.Email = Email;
+            dsut.LoaiNguoiDung = LoaiNGuoiDung;
+
+            db.ThongTinNguoiDungs.InsertOnSubmit(dsut);
+            db.ThongTinNguoiDungs.Context.SubmitChanges();
+            return true;
         }
         public bool XoaNguoiDung(ref string err, string HoTen)
         {
-            string sqlString = "delete from ThongTinNguoiDung where HoTen=N'" + HoTen+ "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.ThongTinNguoiDungs
+                          where hd.HoTen == HoTen
+                          select hd;
+            qlBH.ThongTinNguoiDungs.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaThongTin(ref string err, string HoTen, string DienThoai, string Email, string LoaiNGuoiDung)
         {
-            string sqlString = "UPDATE ThongTinNguoiDung SET DienThoai=N'" + DienThoai + "',Email=N'"
-                + Email + "',LoaiNguoiDung=N'" + LoaiNGuoiDung + "' Where HoTen=N'"+HoTen+"'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.ThongTinNguoiDungs
+                        where UT.Email == Email
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.HoTen = HoTen;
+                dsut.DienThoai = DienThoai;
+                dsut.LoaiNguoiDung = LoaiNGuoiDung;
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -38,12 +38,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtPhuongThucTuyenSinh = new DataTable();
-                dtPhuongThucTuyenSinh.Clear();
-
-                DataSet ds = dbPhuongThucXetTuyen.LayPhuongThucXetTuyen();
-                dtPhuongThucTuyenSinh = ds.Tables[0];
-                dgvPhuongThucTS.DataSource = dtPhuongThucTuyenSinh;
+                dgvPhuongThucTS.DataSource = dbPhuongThucXetTuyen.LayPhuongThucXetTuyen();
 
                 dgvPhuongThucTS.AutoResizeColumns();
                 HideBtn(true);

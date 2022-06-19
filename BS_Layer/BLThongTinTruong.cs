@@ -37,50 +37,64 @@ namespace UI.BS_Layer
             return true;
         }*/
 
-        DBMain db = null;
-        public BLThongTinTruong()
+        public Table<ThongTinChung> LayBangTin()
         {
-            db = new DBMain();
-        }
-        public DataSet LayBangTin()
-        {
-            return db.ExecuteQueryDataSet("select * from ThongTinChung", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.ThongTinChungs;
         }
         public bool ThemBangTin(string GioiThieuTruong, int SoGiaoSu,
             int PhoGS, int TSTS, int NganhThac, int NganhTien, int CuNhan, string vid, ref string err)
         {
-            string sqlString = "insert into ThongTinChung values(N'" + GioiThieuTruong + "','" + SoGiaoSu + "','" + PhoGS + "','" + TSTS + "','" + NganhThac + "','" + NganhTien + "','" + CuNhan + "','" + vid + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            ThongTinChung dsut = new ThongTinChung();
+            dsut.GioiThieuTruong = GioiThieuTruong;
+            dsut.SoGiaoSu = SoGiaoSu;
+            dsut.SoPhoGiaoSu = PhoGS;
+            dsut.SoThacSiTienSi = TSTS;
+            dsut.SoNganhDaoTaoThacSi = NganhThac;
+            dsut.SoNganhDaoTaoTienSi = NganhTien;
+            dsut.SoNganhDaoTaoCuNhan = CuNhan;
+            dsut.VideoGioiThieu = vid;
+
+            db.ThongTinChungs.InsertOnSubmit(dsut);
+            db.ThongTinChungs.Context.SubmitChanges();
+            return true;
         }
         public bool SuaBangTin(string GioiThieuTruong, int SoGiaoSu, 
             int PhoGS, int TSTS, int NganhThac, int NganhTien, int CuNhan, string vid, ref string err)
         {
-            string sqlString = "UPDATE ThongTinChung SET " + "GioiThieuTruong = " +
-                "N'" + GioiThieuTruong + "',SoGiaoSu=" +
-                SoGiaoSu + ",SoPhoGiaoSu=" + PhoGS + ",SoThacSiTienSi=" + TSTS + 
-                ",SoNganhDaoTaoTienSi=" + NganhThac + ",SoNganhDaoTaoThacSi=" + NganhTien + 
-                ",SoNganhDaoTaoCuNhan=" + CuNhan + ",VideoGioiThieu= N'"
-                + vid + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.ThongTinChungs
+                        where UT.GioiThieuTruong == GioiThieuTruong
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.SoGiaoSu = SoGiaoSu;
+                dsut.SoPhoGiaoSu = PhoGS;
+                dsut.SoThacSiTienSi = TSTS;
+                dsut.SoNganhDaoTaoThacSi = NganhThac;
+                dsut.SoNganhDaoTaoTienSi = NganhTien;
+                dsut.SoNganhDaoTaoCuNhan = CuNhan;
+                dsut.VideoGioiThieu = vid;
+                return true;
+            }
+            return false;
         }
         public void LayDuLieu(ref string GTC, ref int SGS, ref int PGS, ref int TSTS, ref int NTS, ref int NS, ref int CN, ref string vid)
         {
             string err = "";
-            DataSet ds = LayBangTin();
-            DataTable dtGTC = new DataTable();
-            dtGTC = ds.Tables[0];
-            if (dtGTC.Rows.Count > 0)
-            {
-                GTC = dtGTC.Rows[0][0].ToString();
-                SGS = Convert.ToInt32(dtGTC.Rows[0][1].ToString());
-                PGS = Convert.ToInt32(dtGTC.Rows[0][2].ToString());
-                TSTS = Convert.ToInt32(dtGTC.Rows[0][3].ToString());
-                NTS = Convert.ToInt32(dtGTC.Rows[0][4].ToString());
-                NS = Convert.ToInt32(dtGTC.Rows[0][5].ToString());
-                CN = Convert.ToInt32(dtGTC.Rows[0][6].ToString());
-                vid = dtGTC.Rows[0][7].ToString();
+            foreach(var x in LayBangTin())
+            {     
+                GTC = x.GioiThieuTruong.ToString();
+                SGS = Convert.ToInt32(x.SoGiaoSu);
+                PGS = Convert.ToInt32(x.SoPhoGiaoSu);
+                TSTS = Convert.ToInt32(x.SoThacSiTienSi);
+                NTS = Convert.ToInt32(x.SoNganhDaoTaoThacSi);
+                NS = Convert.ToInt32(x.SoNganhDaoTaoTienSi);
+                CN = Convert.ToInt32(x.SoNganhDaoTaoCuNhan);
+                vid = x.VideoGioiThieu;
             }
-            else ThemBangTin(" ", 0, 0, 0, 0, 0, 0, " ", ref err);
         }
     }
 }

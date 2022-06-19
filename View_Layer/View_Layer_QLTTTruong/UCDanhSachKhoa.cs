@@ -41,12 +41,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtThongTinKhoa = new DataTable();
-                dtThongTinKhoa.Clear();
-
-                DataSet ds = dbTTK.LayThongTinKhoa();
-                dtThongTinKhoa = ds.Tables[0];
-                dgvDanhSachKhoa.DataSource = dtThongTinKhoa;
+                dgvDanhSachKhoa.DataSource = dbTTK.LayThongTinKhoa();
 
                 dgvDanhSachKhoa.AutoResizeColumns();
             }

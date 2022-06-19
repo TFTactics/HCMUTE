@@ -56,35 +56,54 @@ namespace UI.BS_Layer
             }
             return true;
         }*/
-        DBMain db = null;
-        public BLBangTinTuyenSinh()
+        
+        public Table<TinTuyenSinh> LayBangTin()
         {
-            db = new DBMain();
-        }
-        public DataSet LayBangTin()
-        {
-            return db.ExecuteQueryDataSet("select * from TinTuyenSinh", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.TinTuyenSinhs;
         }
         public bool ThemBangTin(string TieuDe, string NoiDung, string HeDaoTao, string TrangThai, ref string err)
         {
-            string sqlString = "Insert into TinTuyenSinh values (" + "N'" + TieuDe + "',N'" + NoiDung + "',N'" + HeDaoTao + "',N'" + TrangThai + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            TinTuyenSinh x = new TinTuyenSinh();
+            x.TieuDe = TieuDe;
+            x.NoiDung = NoiDung;
+            x.HeDaoTao = HeDaoTao;
+            x.TrangThai = TrangThai;
+
+            db.TinTuyenSinhs.InsertOnSubmit(x);
+            db.TinTuyenSinhs.Context.SubmitChanges();
+            return true;
         }
         public bool XoaBangTin(ref string err, string TieuDe)
         {
-            string sqlString = "delete from TinTuyenSinh where TieuDe=N'" + TieuDe + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.TinTuyenSinhs
+                          where hd.TieuDe == TieuDe
+                          select hd;
+            qlBH.TinTuyenSinhs.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaTin(ref string err, string TieuDe, string NoiDung, string HeDaoTao, string TrangThai)
         {
-            string sqlString = "Update TinTuyenSinh SET TieuDe=N'" + TieuDe +
-                "',NoiDung=N'" + NoiDung + "',HeDaoTao=N'" + HeDaoTao + "',TrangThai=N'" + TrangThai
-                + "'WHERE TieuDe = N'" + TieuDe + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.TinTuyenSinhs
+                        where UT.TieuDe == TieuDe
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.NoiDung = NoiDung;
+                dsut.HeDaoTao = HeDaoTao;
+                dsut.TrangThai = TrangThai;
+                return true;
+            }
+            return false;
         }
         public int DemSoTinTS()
         {
-            return LayBangTin().Tables[0].Rows.Count;
+            return LayBangTin().Count();
         }
     }
 }

@@ -53,30 +53,47 @@ namespace UI.BS_Layer
             return true;
         }*/
 
-        DBMain db = null;
-        public BLHeDaoTao()
+        public Table<HeDaoTao> LayHeDaoTao()
         {
-            db=new DBMain();
-        }
-        public DataSet LayHeDaoTao()
-        {
-            return db.ExecuteQueryDataSet("select * from HeDaoTao", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.HeDaoTaos;
         }
         public bool ThemHeDaoTao(string MaHDT, string TenHDT,string GioiThieu, ref string err)
         {
-            string sqlString = "Insert into HeDaoTao values (" + "N'" + MaHDT + "',N'" + TenHDT + "',N'" + GioiThieu + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            HeDaoTao dsut = new HeDaoTao();
+            dsut.MaHeDaoTao = MaHDT;
+            dsut.TenHeDaoTao = TenHDT;
+            dsut.GioiThieu = GioiThieu;
+
+            db.HeDaoTaos.InsertOnSubmit(dsut);
+            db.HeDaoTaos.Context.SubmitChanges();
+            return true;
         }
         public bool XoaHeDaoTao(ref string err, string MaHDT)
         {
-            string sqlString = "delete from HeDaoTao where MaHeDaoTao=N'" + MaHDT + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.HeDaoTaos
+                          where hd.MaHeDaoTao == MaHDT
+                          select hd;
+            qlBH.HeDaoTaos.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaHeDaoTao(ref string err, string MaHDT, string TenHDT, string GT)
         {
-            string sqlString = "UPDATE HeDaoTao SET TenHeDaoTao=N'" + TenHDT + "',GioiThieu=N'"
-                + GT + "'WHERE MaHeDaoTao=N'" + MaHDT + "'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.HeDaoTaos
+                        where UT.MaHeDaoTao == MaHDT
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.TenHeDaoTao = TenHDT;
+                dsut.GioiThieu = GT;
+                return true;
+            }
+            return false;
         }
     }
 }

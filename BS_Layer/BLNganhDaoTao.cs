@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Text.RegularExpressions;
+using System.Linq;
 using UI.BD_Layer;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
@@ -8,63 +9,96 @@ namespace UI.BS_Layer
 {
     internal class BLNganhDaoTao
     {
-        DBMain db = null;
-        public BLNganhDaoTao()
+        
+        public Table<ThongTinChuyenNganh> LayThongTin()
         {
-            db=new DBMain();
-        }
-        public DataSet LayThongTin()
-        {
-            return db.ExecuteQueryDataSet("select * from ThongTinChuyenNganh", CommandType.Text);
+            QuanLiTuyenSinhDataContext slts = new QuanLiTuyenSinhDataContext();
+
+            return slts.ThongTinChuyenNganhs;
         }
         public bool ThemNganhDaoTao(string MaNganh, string TenN, string LoaiCT, string Khoa, int ChiTieu, int HocPhi, string MoTa, ref string err)
         {
-            string sqlString = "Insert into ThongTinChuyenNganh values (" + "N'" + MaNganh +"',N'"+TenN+ "',N'" + LoaiCT + "',N'" + Khoa + "','" + ChiTieu + "','" + HocPhi + "',N'" + MoTa + "')";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            ThongTinChuyenNganh dsut = new ThongTinChuyenNganh();
+            dsut.MaNganh = MaNganh;
+            dsut.TenNganh = TenN;
+            dsut.LoaiChuongTrinh = LoaiCT;
+            dsut.Khoa = Khoa;
+            dsut.ChiTieu = ChiTieu;
+            dsut.HocPhi = HocPhi;
+            dsut.MoTaNganh = MoTa;
+
+            db.ThongTinChuyenNganhs.InsertOnSubmit(dsut);
+            db.ThongTinChuyenNganhs.Context.SubmitChanges();
+            return true;
         }
-        public bool XoaNganh(ref string err, string MaNgang)
+        public bool XoaNganh(ref string err, string MaNganh)
         {
-            string sqlString = "delete from ThongTinChuyenNganh where MaNganh=N'" + MaNgang +"'";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext qlBH = new QuanLiTuyenSinhDataContext();
+            var tpQuery = from hd in qlBH.ThongTinChuyenNganhs
+                          where hd.MaNganh == MaNganh
+                          select hd;
+            qlBH.ThongTinChuyenNganhs.DeleteAllOnSubmit(tpQuery);
+            qlBH.SubmitChanges();
+            return true;
         }
         public bool SuaNganh(ref string err,string MaNganh, string TenN, string LoaiCT, string Khoa, int ChiTieu,int HocPhi, string MoTa)
         {
-            string sqlString = "Update ThongTinChuyenNganh SET TenNganh = N'" + TenN + "',LoaiChuongTrinh =N'" + LoaiCT + "',Khoa=N'" + Khoa + "',ChiTieu='" + ChiTieu+"',HocPhi='"+HocPhi+"',MoTaNganh=N'"+MoTa
-                + "'WHERE MaNganh = N'" + MaNganh + "'" ;
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            var dsut = (from UT in db.ThongTinChuyenNganhs
+                        where UT.MaNganh == MaNganh
+                        select UT).SingleOrDefault();
+            if (dsut != null)
+            {
+                dsut.TenNganh = TenN;
+                dsut.LoaiChuongTrinh = LoaiCT;
+                dsut.Khoa = Khoa;
+                dsut.ChiTieu = ChiTieu;
+                dsut.HocPhi = HocPhi;
+                dsut.MoTaNganh = MoTa;
+                return true;
+            }
+            return false;
         }
         public bool IsNumber(string pText)
         {
             Regex regex = new Regex(@"^[-+]?[0-9]*.?[0-9]+$");
             return regex.IsMatch(pText);
         }
-        public DataSet SearchNganh(string value)
+        public DataTable SearchNganh(string value)
         {
-            string sqlString;
+            DataTable dt = new DataTable();
             if (!IsNumber(value))
             {
-                sqlString = "select * from ThongTinChuyenNganh where MaNganh like '%"
-                    + value + "%' or TenNganh like '%" + value + "%' or LoaiChuongTrinh like '%" + value
-                    + "%' or Khoa like '%" + value + "%' or  MoTaNganh like '%" + value + "%'";
-                
+                QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+                foreach (var UT in LayThongTin())
+                    if (UT.MaNganh == value || UT.LoaiChuongTrinh == value || UT.MoTaNganh == value || UT.TenNganh == value || UT.Khoa == value)
+                        dt.Rows.Add(UT);
+                return dt;
             }
             else
             {
-                sqlString = "select * from ThongTinChuyenNganh where MaNganh like '%"
-                    + value + "%' or TenNganh like '%" + value + "%' or LoaiChuongTrinh like '%" + value
-                    + "%' or Khoa like '%" + value + "%' or ChiTieu='" + value + "' or HocPhi ='"
-                    + value + "' or MoTaNganh like '%" + value + "%'";
+                int n = System.Convert.ToInt32(value);
+                QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+                foreach (var UT in LayThongTin())
+                    if (UT.MaNganh == value || UT.LoaiChuongTrinh == value || UT.MoTaNganh == value || UT.TenNganh == value || UT.Khoa == value || UT.HocPhi == n || UT.ChiTieu == n)
+                        dt.Rows.Add(UT);
+                return dt;
+
             }
-            return db.ExecuteQueryDataSet(sqlString, CommandType.Text);
         }
-        public DataSet LocLoaiCT(string value)
+        public DataTable LocLoaiCT(string value)
         {
-            string sqlString = "select * from ThongTinChuyenNganh where LoaiChuongTrinh = '"+value+"'";
-            return db.ExecuteQueryDataSet(sqlString, CommandType.Text);
+            DataTable dt = new DataTable();
+            QuanLiTuyenSinhDataContext db = new QuanLiTuyenSinhDataContext();
+            foreach (var UT in LayThongTin())
+                if (UT.MaNganh == value || UT.LoaiChuongTrinh == value || UT.MoTaNganh == value || UT.TenNganh == value || UT.Khoa == value)
+                    dt.Rows.Add(UT);
+            return dt;
         }
         public int DemSoNganh()
         {
-            return LayThongTin().Tables[0].Rows.Count;
+            return LayThongTin().Count();
         }    
     }
 }

@@ -40,12 +40,7 @@ namespace UI.View_Layer
         {
             try
             {
-                dtThongTinNhapHoc = new DataTable();
-                dtThongTinNhapHoc.Clear();
-
-                DataSet ds = dbThongTinNhapHoc.LayThongTinNhapHoc();
-                dtThongTinNhapHoc = ds.Tables[0];
-                dgvTTNhapHoc.DataSource = dtThongTinNhapHoc;
+                dgvTTNhapHoc.DataSource = dbThongTinNhapHoc.LayThongTinNhapHoc();
 
                 dgvTTNhapHoc.AutoResizeColumns();
             }

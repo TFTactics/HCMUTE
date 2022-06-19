@@ -22,10 +22,8 @@ namespace UI.View_Layer
             {
                 dtDanhSachUngTuyen = new DataTable();
                 dtDanhSachUngTuyen.Clear();
-
-                DataSet ds = dbDSUT.LayDanhSachUngTuyen();
-                dtDanhSachUngTuyen = ds.Tables[0];
-                dgvDSUngTuyen.DataSource = dtDanhSachUngTuyen;
+                
+                dgvDSUngTuyen.DataSource = dbDSUT.LayDanhSachUngTuyen();
 
                 dgvDSUngTuyen.AutoResizeColumns();
                 HideBtn(true);
