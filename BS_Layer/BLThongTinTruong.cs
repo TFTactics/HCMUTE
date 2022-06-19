@@ -1,11 +1,42 @@
 ﻿using System.Data;
 using UI.BD_Layer;
 using System;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
+using System.Linq;
 
 namespace UI.BS_Layer
 {
     class BLThongTinTruong
     {
+        /*public Table<ThongTinChung> LayBangTin()
+        {
+            DataSet ds = new DataSet();
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            return qlTS.ThongTinChungs;
+        }
+
+        public bool SuaBangTin(string GioiThieuTruong, int SoGiaoSu,
+            int PhoGS, int TSTS, int NganhThac, int NganhTien, int CuNhan, string vid, ref string err)
+        {
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            var tsQuery = (from ts in qlTS.ThongTinChungs
+                           select ts).SingleOrDefault();
+            if (tsQuery != null)
+            {
+                tsQuery.GioiThieuTruong = GioiThieuTruong;
+                tsQuery.SoGiaoSu = SoGiaoSu;
+                tsQuery.SoPhoGiaoSu = PhoGS;
+                tsQuery.SoNganhDaoTaoThacSi = NganhThac;
+                tsQuery.SoNganhDaoTaoTienSi = NganhTien;
+                tsQuery.SoNganhDaoTaoCuNhan = CuNhan;
+                tsQuery.VideoGioiThieu = vid;
+
+                qlTS.SubmitChanges();
+            }
+            return true;
+        }*/
+
         DBMain db = null;
         public BLThongTinTruong()
         {

@@ -1,5 +1,7 @@
 ﻿using System.Data;
 using UI.BD_Layer;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
 
 namespace UI.BS_Layer
 {

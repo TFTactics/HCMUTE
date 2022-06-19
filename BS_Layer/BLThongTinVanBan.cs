@@ -1,10 +1,19 @@
 ﻿using System.Data;
 using UI.BD_Layer;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
 
 namespace UI.BS_Layer
 {
     internal class BLThongTinVanBan
     {
+        public Table<TinTuyenSinh> LayBangTin()
+        {
+            DataSet ds = new DataSet();
+            QuanLiTuyenSinhDataContext qlTS = new QuanLiTuyenSinhDataContext();
+            return qlTS.TinTuyenSinhs;
+        }
+
         DBMain db = null;
         public BLThongTinVanBan()
         {

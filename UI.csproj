@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -80,6 +81,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLiTuyenSinh.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLiTuyenSinh.dbml</DependentUpon>
+    </Compile>
     <Compile Include="UCDangKi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -354,6 +360,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="QuanLiTuyenSinh.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>QuanLiTuyenSinh.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLiTuyenSinh.dbml.layout">
+      <DependentUpon>QuanLiTuyenSinh.dbml</DependentUpon>
+    </None>
     <None Include="Resource\icons8-magnifying-glass-64.png" />
   </ItemGroup>
   <ItemGroup>
@@ -371,7 +385,9 @@
   <ItemGroup>
     <None Include="Resource\lamp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="BS_Layer\Describe.txt" />
     <Content Include="BD_Layer\Describe.txt" />
