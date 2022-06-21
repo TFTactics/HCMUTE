@@ -3,6 +3,7 @@ using UI.BD_Layer;
 using System.Data.Linq;
 using System.Linq;
 using System.Data.Linq.Mapping;
+using System.Windows.Forms;
 
 namespace UI.BS_Layer
 {
@@ -122,6 +123,7 @@ namespace UI.BS_Layer
             foreach (var a in LayChuongTrinhDaoTao())
                 if (a.TenChuongTrinh == x)
                     count++;
+            MessageBox.Show(count.ToString());
             return count;
         }
     }
